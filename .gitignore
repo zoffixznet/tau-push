@@ -1,0 +1,9 @@
+/secret.json
+/lib/.precomp
+/alerts.sqlite.db
+/static/main.css
+/static/main.css.map
+/static/.sass-cache/
+/temp.p6
+/screenlog.*
+

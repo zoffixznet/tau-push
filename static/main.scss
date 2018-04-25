@@ -1,0 +1,33 @@
+html, body, a {
+    background: #ccc;
+    color: #000;
+}
+
+#content {
+    width: 700px;
+    p  {
+        width: 400px;
+        margin: 10px auto;
+    }
+    margin: 100px auto 20px;
+    text-align: center;
+}
+
+input, button {
+    font-size: 120%;
+    border: 1px solid #666;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    padding: 10px;
+}
+
+
+#messages {
+    .error {
+        color: red;
+        font-weight: bold;
+    }
+    .success {
+        color: green;
+    }
+}

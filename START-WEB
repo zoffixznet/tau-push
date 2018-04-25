@@ -1,0 +1,4 @@
+#!/bin/bash
+$(cd static; sass main.scss:main.css)
+screen -L -S p6lert perl6 bin/server.p6
+
