@@ -10,7 +10,8 @@ sub MAIN (Str:D :$host = '0.0.0.0', UInt:D :$port = 10000) {
         get -> {
             content 'text/html', html-home-page
         }
-        get -> 'time', Str $gct {
+        get -> 'time', *@gct {
+            my $gct = join '/', @gct; # fu apache
             say "Got time $gct";
             if (try GCT.new: $gct) -> $time {
                 say "Processed time to $time.gist() [$time.posix()]";
