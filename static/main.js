@@ -23,6 +23,18 @@ $(document).ready(function() {
            fail_msg("Failed to process GCT time. Did you use right format?");
         });
     });
+
+    $("#convert").on('click', function() {
+        var gct = $('#gct2').val();
+        $.get('/time/' + encodeURIComponent(gct), function(data) {
+            $('#conversion-result').html(
+                'The Old Earth equivalent is ' + data.old_earth
+                + '<br>' + data.when);
+        }).fail(function() {
+           $('#conversion-result').text(
+               "Failed to process GCT time. Did you use right format?");
+        });
+    });
 });
 
 function fail_msg(err) {

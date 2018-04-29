@@ -6,7 +6,7 @@ html, body, a {
 #content {
     width: 700px;
     p  {
-        width: 400px;
+        width: 410px;
         margin: 10px auto;
     }
     margin: 100px auto 20px;
@@ -22,7 +22,7 @@ input, button {
 }
 
 
-#messages {
+#messages, #messages2 {
     .error {
         color: red;
         font-weight: bold;
@@ -30,4 +30,22 @@ input, button {
     .success {
         color: green;
     }
+}
+
+.panel {
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    margin: 30px 0;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 120%;
+    margin-top: 0;
+}
+
+#conversion-result {
+    padding-top: 20px;
+    font-size: 110%;
+    color: #006;
 }

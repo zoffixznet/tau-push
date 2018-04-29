@@ -3,6 +3,7 @@ use Cro::HTTP::Server;
 use HTML::Escape;
 use JSON::Fast;
 use Games::TauStation::DateTime;
+use Number::Denominate;
 my &H := &escape-html;
 
 sub MAIN (Str:D :$host = '0.0.0.0', UInt:D :$port = 10000) {
@@ -15,7 +16,12 @@ sub MAIN (Str:D :$host = '0.0.0.0', UInt:D :$port = 10000) {
             say "Got time $gct";
             if (try GCT.new: $gct) -> $time {
                 say "Processed time to $time.gist() [$time.posix()]";
-                content 'application/json', to-json %(alert_time => $time.posix)
+                content 'application/json', to-json %(
+                    alert_time => $time.posix,
+                    old_earth  => $time.OE,
+                    when       => "which is {
+                      denominate ($time.Instant - now).Rat} from now"
+                )
             } else { not-found }
         }
         my subset StaticContent of Str where * ∈ <
@@ -36,11 +42,23 @@ sub MAIN (Str:D :$host = '0.0.0.0', UInt:D :$port = 10000) {
 
 sub html-home-page {
     html-layout-default q:to/✎✎✎✎✎/;
-    <p>Enter <a href="https://alpha.taustation.space/archive/general/gct">GCT</a> absolute time
-      or relative duration. Click button. Receive push notification at that time</p>
-    <div id="messages"></div>
-    <input type="text" id="gct" placeholder="198.17/95:875 GCT">
-    <button id="set-alert">Set alert</button>
+    <div class="panel">
+        <h2>Convert Time</h2>
+        <p>Enter <a href="https://alpha.taustation.space/archive/general/gct">GCT</a> absolute time
+          or relative duration. Click button. Receive Old Earth time:</p>
+        <div id="messages2"></div>
+        <input type="text" id="gct2" placeholder="198.17/95:875 GCT">
+        <button id="convert">Convert</button>
+        <div id="conversion-result"></div>
+    </div>
+    <div class="panel">
+        <h2>Push Notification</h2>
+        <p>Enter <a href="https://alpha.taustation.space/archive/general/gct">GCT</a> absolute time
+          or relative duration. Click button. Receive push notification at that time</p>
+        <div id="messages"></div>
+        <input type="text" id="gct" placeholder="198.17/95:875 GCT">
+        <button id="set-alert">Set alert</button>
+    </div>
     ✎✎✎✎✎
 }
 
