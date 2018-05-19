@@ -56,6 +56,7 @@ sub html-home-page {
         <p>Enter <a href="https://alpha.taustation.space/archive/general/gct">GCT</a> absolute time
           or relative duration. Click button. Receive push notification at that time</p>
         <div id="messages"></div>
+        <input type="text" id="message" placeholder="message">
         <input type="text" id="gct" placeholder="198.17/95:875 GCT">
         <button id="set-alert">Set alert</button>
     </div>
